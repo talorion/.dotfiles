@@ -1,7 +1,7 @@
 # .dotfiles
 Collection of various config files
 
-# install packeges
+# install packages
 
 ```
 sudo apt install stow neovim python3 python3-neovim
@@ -19,6 +19,12 @@ cd .dotfiles/
 ```
 chsh -s $(which zsh)
 stow zsh/
+```
+
+# install oh-my-zsh
+
+```
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
 # install nvim plugins
