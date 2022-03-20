@@ -32,6 +32,12 @@ Plug 'flazz/vim-colorschemes'
 " Tree-sitter is a parser generator tool and an incremental parsing library.
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
+" Black is the uncompromising Python code formatter.
+" Plug 'ambv/black'
+
+" A (Neo)vim plugin for formatting code.
+Plug 'sbdchd/neoformat'
+
 call plug#end()
 
 " set colorscheme
@@ -75,6 +81,9 @@ set smartindent
 set undodir=~/.vim/undodir
 set undofile
 
+" enable file type detection
+set filetype=on
+
 " vim's builtin file explorer
 let g:netrw_browse_split = 0
 let g:netrw_banner = 0
@@ -94,6 +103,7 @@ lua require("talorion")
 
 " use omni completion provided by lsp
 autocmd Filetype python setlocal omnifunc=v:lua.vim.lsp.omnifunc
+
 
 " quick blink whats been yanked
 augroup highlight_yank

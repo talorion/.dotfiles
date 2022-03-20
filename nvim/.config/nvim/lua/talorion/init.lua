@@ -7,4 +7,6 @@ require("talorion.cmp")
 -- load gruvbox.lua
 -- require("talorion.gruvbox")
 
+-- load lsp.lua
 
+require("talorion.lsp")
