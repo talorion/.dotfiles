@@ -35,8 +35,8 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 nvim +'PlugInstall --sync' +qa
 ```
 
-# install python lsp server
+# install python packages
 
 ```
-pip3 install "python-lsp-server[all]"
+pip3 install "python-lsp-server[all]" black
 ```
