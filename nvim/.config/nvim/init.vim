@@ -60,6 +60,7 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
+set list listchars=tab:\›\ ,trail:-,extends:>,precedes:<,eol:¬,space:·
 
 " Highligt colunm 80
 set colorcolumn=80
