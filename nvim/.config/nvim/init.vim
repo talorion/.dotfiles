@@ -22,20 +22,27 @@ Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
 Plug 'onsails/lspkind-nvim'
 " Repo to hold a bunch of info & extension callbacks for buildin LSP
 Plug 'nvim-lua/lsp_extensions.nvim'
-"A collection of common configurations for Neovim's built-in language server client.
-Plug 'neovim/nvim-lspconfig'
 " This is a Vim plugin that provides Rust file detection, syntax highlighting, formatting, Syntastic integration, and more.
 Plug 'rust-lang/rust.vim'
-" A port of gruvbox community theme to lua with treesitter support!
-" Plug 'ellisonleao/gruvbox.nvim'
 " one stop shop for vim colorschemes.
 Plug 'flazz/vim-colorschemes'
 " Tree-sitter is a parser generator tool and an incremental parsing library.
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-" Black is the uncompromising Python code formatter.
-" Plug 'ambv/black'
 " A (Neo)vim plugin for formatting code.
 Plug 'sbdchd/neoformat'
+" nvim-dap is a Debug Adapter Protocol client implementation
+Plug 'mfussenegger/nvim-dap'
+" DAP Buddy allows you to manage debuggers provided by nvim-dap
+Plug 'Pocco81/DAPInstall.nvim'
+" Snippets collection for a set of different programming languages
+Plug 'rafamadriz/friendly-snippets'
+" Fugitive is the primier VIM plugin for Git
+Plug 'tpope/vim-fugitive'
+" A git commit browser
+Plug 'junegunn/gv.vim'
+
+" Black is the uncompromising Python code formatter.
+" Plug 'ambv/black'
 
 call plug#end()
 
