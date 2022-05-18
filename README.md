@@ -4,7 +4,7 @@ Collection of various config files
 # install packages
 
 ```
-sudo apt install stow neovim python3 python3-neovim
+sudo apt install stow neovim python3 python3-neovim tmux curl fzf
 ```
 
 # clone

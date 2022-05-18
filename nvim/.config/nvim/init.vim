@@ -4,37 +4,36 @@ let g:python3_host_prog = '/usr/bin/python3'
 " vim-plug A minimalist Vim plugin manager.
 call plug#begin('~/.vim/plugged')
 
-" telescope.nvim is a highly extendable fuzzy finder over lists.
+" A nvim lua library used in other plugins
 Plug 'nvim-lua/plenary.nvim'
+" telescope.nvim is a highly extendable fuzzy finder over lists.
 Plug 'nvim-telescope/telescope.nvim'
-
-"A completion engine plugin for neovim written in Lua. 
+" collection of common configurations for Neovim's builtin language server client
 Plug 'neovim/nvim-lspconfig'
+" nvim-cmp source for neovim's builtin language server
 Plug 'hrsh7th/cmp-nvim-lsp'
+" nvim-cmp source for buffer words.
 Plug 'hrsh7th/cmp-buffer'
+" A compltetion engine plugin for neovim written in lua
 Plug 'hrsh7th/nvim-cmp'
+" Tabnine source for hrsh7th/nvim-cmp
 Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
+" This tiny plugin adds vscode-like pictograms to neovim's builtin lsp
 Plug 'onsails/lspkind-nvim'
+" Repo to hold a bunch of info & extension callbacks for buildin LSP
 Plug 'nvim-lua/lsp_extensions.nvim'
-
 "A collection of common configurations for Neovim's built-in language server client.
 Plug 'neovim/nvim-lspconfig'
-
 " This is a Vim plugin that provides Rust file detection, syntax highlighting, formatting, Syntastic integration, and more.
 Plug 'rust-lang/rust.vim'
-
 " A port of gruvbox community theme to lua with treesitter support!
 " Plug 'ellisonleao/gruvbox.nvim'
-
 " one stop shop for vim colorschemes.
 Plug 'flazz/vim-colorschemes'
-
 " Tree-sitter is a parser generator tool and an incremental parsing library.
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
 " Black is the uncompromising Python code formatter.
 " Plug 'ambv/black'
-
 " A (Neo)vim plugin for formatting code.
 Plug 'sbdchd/neoformat'
 
