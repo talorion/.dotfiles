@@ -1,6 +1,8 @@
 -- Setup nvim-cmp.
 local cmp = require'cmp'
 
+local select_opts = {behavior = cmp.SelectBehavior.Select}
+
 cmp.setup({
 snippet = {
   -- REQUIRED - you must specify a snippet engine
@@ -12,6 +14,12 @@ snippet = {
   end,
 },
 mapping = {
+  ['<Up>'] = cmp.mapping.select_prev_item(select_opts),
+  ['<Down>'] = cmp.mapping.select_next_item(select_opts),
+
+  ['<C-p>'] = cmp.mapping.select_prev_item(select_opts),
+  ['<C-n>'] = cmp.mapping.select_next_item(select_opts),
+
   ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
   ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
   ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
@@ -61,6 +69,7 @@ sources = cmp.config.sources({
 -- Setup lspconfig.
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
+-- require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
+require('lspconfig')['pyright'].setup {
 capabilities = capabilities
 }

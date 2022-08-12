@@ -6,8 +6,9 @@ inoremap <buffer> <F5> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 " autocmd FileType python map <buffer> <F9> :w<CR>:exec '!pytest' shellescape(@%, 1)<CR>
 " autocmd FileType python map <buffer> <F9> :w<CR>:exec '!pytest' shellescape(@%, 1)<CR>
 
-nnoremap <buffer> <F9> :w<CR>:exec '!python3 -m unittest discover -s tst'<CR>
-inoremap <buffer> <F9> <esc>:w<CR>:exec '!python3 -m unittest discover -s tst'<CR>
+" /venv/bin/python -m pytest --rootdir . --override-ini junit_family=xunit1 --junit-xml=/tmp/tmp-27691VGg8jnPmL9ND.xml ./tests/monitor/evaluator/test_evaluator.py
+nnoremap <buffer> <F9> :w<CR>:exec '!python3 -m pytest --quiet 'shellescape(@%, 1)<CR>
+inoremap <buffer> <F9> <esc>:w<CR>:exec '!python3 -m pytest --quiet 'shellescape(@%, 1)<CR>
 
 " Configure enabled formatters.
 let g:neoformat_enabled_python = ['black']

@@ -91,6 +91,9 @@ set undofile
 " enable file type detection
 set filetype=on
 
+" 
+set winbar=%=%m\ %f
+
 " vim's builtin file explorer
 let g:netrw_browse_split = 0
 let g:netrw_banner = 0
@@ -101,16 +104,15 @@ inoremap <C-c> <esc>
 
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
-" nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 " nnoremap <leader>fb <cmd>Telescope buffers<cr>
-" nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " load lua/talorion/init.lua:
 lua require("talorion")
 
 " use omni completion provided by lsp
 autocmd Filetype python setlocal omnifunc=v:lua.vim.lsp.omnifunc
-
 
 " quick blink whats been yanked
 augroup highlight_yank

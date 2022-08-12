@@ -1,5 +1,5 @@
 -- load nvim-lspconfig.lua
-require("talorion.nvim-lspconfig")
+-- require("talorion.nvim-lspconfig")
 
 -- load cmp.lua
 require("talorion.cmp")
