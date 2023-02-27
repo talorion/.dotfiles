@@ -4,7 +4,7 @@ Collection of various config files
 # install packages
 
 ```
-sudo apt install stow neovim python3 python3-neovim tmux curl fzf ripgrep fd-find
+sudo apt install stow neovim python3 python3-neovim tmux curl fzf ripgrep fd-find cmake clangd clang
 ```
 
 # clone
@@ -34,6 +34,8 @@ stow nvim/
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 nvim +'PlugInstall --sync' +qa
 nvim +'TSInstall python' +qa
+nvim +'TSInstall cmake' +qa
+nvim +'TSInstall cpp' +qa
 ```
 
 # install python packages

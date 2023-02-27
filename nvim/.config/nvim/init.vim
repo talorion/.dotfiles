@@ -41,6 +41,9 @@ Plug 'tpope/vim-fugitive'
 " A git commit browser
 Plug 'junegunn/gv.vim'
 
+" terraform support
+Plug 'hashivim/vim-terraform'
+
 " Black is the uncompromising Python code formatter.
 " Plug 'ambv/black'
 
@@ -94,6 +97,9 @@ set filetype=on
 " 
 set winbar=%=%m\ %f
 
+"
+set spell spelllang=en_us
+
 " vim's builtin file explorer
 let g:netrw_browse_split = 0
 let g:netrw_banner = 0
@@ -113,6 +119,8 @@ lua require("talorion")
 
 " use omni completion provided by lsp
 autocmd Filetype python setlocal omnifunc=v:lua.vim.lsp.omnifunc
+
+autocmd Filetype cmake setlocal omnifunc=v:lua.vim.lsp.omnifunc
 
 " quick blink whats been yanked
 augroup highlight_yank

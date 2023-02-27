@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/.local/bin:/usr/local/bin:$HOME/.poetry/bin:$PATH
+export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME//.oh-my-zsh"
@@ -72,6 +72,10 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
+
+# init starship
+eval "$(starship init zsh)"
+
 source $ZSH/oh-my-zsh.sh
 # source virtualenv-auto-activate.sh
 
@@ -104,3 +108,31 @@ source $ZSH/oh-my-zsh.sh
 alias python='python3'
 
 export PATH="$HOME/.poetry/bin:$PATH"
+
+eval "$(direnv hook zsh)"
+
+setopt PROMPT_SUBST
+show_virtual_env() {
+  if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
+    echo "($(basename $VIRTUAL_ENV))"
+  fi
+}
+PS1='$(show_virtual_env)'$PS1
+
+# tat: tmux attach
+# gets the name of the current directory and removes periods, which tmux doesn’t like.
+# if any session with the same name is open, it re-attaches to it.
+# otherwise, it checks if an .envrc file is present and starts a new tmux session using direnv exec.
+# otherwise, starts a new tmux session with that name.
+# cd into the folder, then tat.
+function tat {
+  name=$(basename `pwd` | sed -e 's/\.//g')
+
+  if tmux ls 2>&1 | grep "$name"; then
+    tmux attach -t "$name"
+  elif [ -f .envrc ]; then
+    direnv exec / tmux new-session -s "$name"
+  else
+    tmux new-session -s "$name"
+  fi
+}
