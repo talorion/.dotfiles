@@ -61,6 +61,9 @@ return require('packer').startup(function(use)
         requires = { "nvim-lua/plenary.nvim" },
     }
 
+    -- one stop shop for vim colorschemes.
+    use 'flazz/vim-colorschemes'
+
     -- The goal of nvim-treesitter is both to provide a simple and easy way to use the interface for tree-sitter in Neovim and to provide some basic functionality such as highlighting based on it
     use{
         "nvim-treesitter/nvim-treesitter", 

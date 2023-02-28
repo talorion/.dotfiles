@@ -17,6 +17,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     end,
 })
 
+
 -- run a formatter on save
 -- vim.api.nvim_create_autocmd({"BufWritePre"}, {
 --     group = TalorionGroup,
