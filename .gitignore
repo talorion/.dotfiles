@@ -34,3 +34,4 @@ bin/.local/bin/vulture
 bin/.local/bin/yapf
 bin/.local/bin/yapf-diff
 
+nvim/.config/nvim/plugin/packer_compiled.lua
