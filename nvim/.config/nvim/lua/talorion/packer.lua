@@ -26,6 +26,28 @@ return require('packer').startup(function(use)
       end
     })
 
+    -- A pretty list for showing diagnostics, references, telescope results, quickfix and location lists to help you solve all the trouble your code is causing.
+    use({
+        "folke/trouble.nvim",
+        config = function()
+        require("trouble").setup {
+            icons = false,
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+            signs = {
+                -- icons / text used for a diagnostic
+                error = '✗',
+                warning = '◍',
+                hint = '➜',
+                information = 'I',
+                other = '⋗'
+            },
+        }
+        end
+    })
+
+
     -- telescope.nvim is a highly extendable fuzzy finder over lists.
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.0',
@@ -73,6 +95,8 @@ return require('packer').startup(function(use)
     -- Undotree visualizes the undo history and makes it easy to browse and switch between different undo branches.
     use("mbbill/undotree")
 
+    -- Fugitive is the premier Vim plugin for Git.
+    use("tpope/vim-fugitive")
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
