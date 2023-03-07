@@ -98,6 +98,9 @@ return require('packer').startup(function(use)
     -- Fugitive is the premier Vim plugin for Git.
     use("tpope/vim-fugitive")
 
+    -- Distraction-free coding for Neovim
+    use("folke/zen-mode.nvim")
+
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if packer_bootstrap then
