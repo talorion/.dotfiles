@@ -18,12 +18,21 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
     -- All natural pine, faux fur and a bit of soho vibes for the classy minimalist
+    -- use({
+    --   'rose-pine/neovim',
+    --   as = 'rose-pine',
+    --   config = function()
+    --       vim.cmd('colorscheme rose-pine')
+    --   end
+    -- })
+
+    -- one stop shop for vim colorschemes.
+    -- use 'flazz/vim-colorschemes'
     use({
-      'rose-pine/neovim',
-      as = 'rose-pine',
-      config = function()
-          vim.cmd('colorscheme rose-pine')
-      end
+        'flazz/vim-colorschemes',
+          config = function()
+              vim.cmd('colorscheme gruvbox')
+          end
     })
 
     -- A pretty list for showing diagnostics, references, telescope results, quickfix and location lists to help you solve all the trouble your code is causing.
@@ -83,8 +92,6 @@ return require('packer').startup(function(use)
         requires = { "nvim-lua/plenary.nvim" },
     }
 
-    -- one stop shop for vim colorschemes.
-    use 'flazz/vim-colorschemes'
 
     -- The goal of nvim-treesitter is both to provide a simple and easy way to use the interface for tree-sitter in Neovim and to provide some basic functionality such as highlighting based on it
     use{

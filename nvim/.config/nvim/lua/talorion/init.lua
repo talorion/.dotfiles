@@ -18,22 +18,13 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 
--- run a formatter on save
 -- vim.api.nvim_create_autocmd({"BufWritePre"}, {
---     group = TalorionGroup,
---     pattern = "*",
---     command = function()
---         vim.lsp.buf.formatting_sync()
---     end,
+--     group = fmt_group,
+--     pattern = '*.py',
+--     callback = function()
+--         vim.lsp.buf.format({async = false }) 
+--         -- vim.lsp.buf.formatting_sync() thi is deprecated
+--     end
 -- })
-vim.api.nvim_create_autocmd({"BufWritePre"}, {
-    group = fmt_group,
-    pattern = '*.py',
-    callback = function()
-        vim.lsp.buf.format() 
-        -- vim.lsp.buf.formatting_sync()
-    end
-})
 
--- run a formatter on save
-vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]
+
