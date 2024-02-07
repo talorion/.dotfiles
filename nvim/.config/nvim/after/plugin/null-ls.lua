@@ -5,15 +5,16 @@ end
 
 local sources = {
 	-- python
-	null_ls.builtins.formatting.isort,
+	null_ls.builtins.formatting.ruff,
+	-- null_ls.builtins.formatting.isort,
 	-- null_ls.builtins.formatting.black.with({
 	--   extra_args = { "--line-length=120" }
 	-- }),
-	null_ls.builtins.formatting.black,
+	-- null_ls.builtins.formatting.black,
 	-- null_ls.builtins.formatting.autoflake.with({
 	--     extra_args ={ "--remove-all-unused-imports", "--ignore-init-module-imports" }
 	-- }),
-	null_ls.builtins.formatting.autoflake,
+	-- null_ls.builtins.formatting.autoflake,
 
 	-- lua
 	null_ls.builtins.formatting.stylua,

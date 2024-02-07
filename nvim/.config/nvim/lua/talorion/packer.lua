@@ -1,116 +1,111 @@
-
 local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-    vim.cmd [[packadd packer.nvim]]
-    return true
-  end
-  return false
+	local fn = vim.fn
+	local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+	if fn.empty(fn.glob(install_path)) > 0 then
+		fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
+		vim.cmd([[packadd packer.nvim]])
+		return true
+	end
+	return false
 end
 
 local packer_bootstrap = ensure_packer()
 
+return require("packer").startup(function(use)
+	-- Packer can manage itself
+	use("wbthomason/packer.nvim")
 
-return require('packer').startup(function(use)
-    -- Packer can manage itself
-    use 'wbthomason/packer.nvim'
+	-- All natural pine, faux fur and a bit of soho vibes for the classy minimalist
+	-- use({
+	--   'rose-pine/neovim',
+	--   as = 'rose-pine',
+	--   config = function()
+	--       vim.cmd('colorscheme rose-pine')
+	--   end
+	-- })
 
-    -- All natural pine, faux fur and a bit of soho vibes for the classy minimalist
-    -- use({
-    --   'rose-pine/neovim',
-    --   as = 'rose-pine',
-    --   config = function()
-    --       vim.cmd('colorscheme rose-pine')
-    --   end
-    -- })
+	-- one stop shop for vim colorschemes.
+	-- use 'flazz/vim-colorschemes'
+	use({
+		"flazz/vim-colorschemes",
+		config = function()
+			vim.cmd("colorscheme gruvbox")
+		end,
+	})
 
-    -- one stop shop for vim colorschemes.
-    -- use 'flazz/vim-colorschemes'
-    use({
-        'flazz/vim-colorschemes',
-          config = function()
-              vim.cmd('colorscheme gruvbox')
-          end
-    })
+	-- A pretty list for showing diagnostics, references, telescope results, quickfix and location lists to help you solve all the trouble your code is causing.
+	use({
+		"folke/trouble.nvim",
+		config = function()
+			require("trouble").setup({
+				icons = false,
+				-- your configuration comes here
+				-- or leave it empty to use the default settings
+				-- refer to the configuration section below
+				signs = {
+					-- icons / text used for a diagnostic
+					error = "✗",
+					warning = "◍",
+					hint = "➜",
+					information = "I",
+					other = "⋗",
+				},
+			})
+		end,
+	})
 
-    -- A pretty list for showing diagnostics, references, telescope results, quickfix and location lists to help you solve all the trouble your code is causing.
-    use({
-        "folke/trouble.nvim",
-        config = function()
-        require("trouble").setup {
-            icons = false,
-            -- your configuration comes here
-            -- or leave it empty to use the default settings
-            -- refer to the configuration section below
-            signs = {
-                -- icons / text used for a diagnostic
-                error = '✗',
-                warning = '◍',
-                hint = '➜',
-                information = 'I',
-                other = '⋗'
-            },
-        }
-        end
-    })
+	-- telescope.nvim is a highly extendable fuzzy finder over lists.
+	use({
+		"nvim-telescope/telescope.nvim",
+		tag = "0.1.5",
+		-- or                            , branch = '0.1.x',
+		requires = { { "nvim-lua/plenary.nvim" } },
+	})
 
+	-- The purpose of this plugin is to bundle all the "boilerplate code" necessary to have nvim-cmp (a popular autocompletion plugin) and nvim-lspconfig working together.
+	use({
+		"VonHeikemen/lsp-zero.nvim",
+		branch = "v1.x",
+		requires = {
+			-- LSP Support
+			{ "neovim/nvim-lspconfig" },
+			{ "williamboman/mason.nvim" },
+			{ "williamboman/mason-lspconfig.nvim" },
 
-    -- telescope.nvim is a highly extendable fuzzy finder over lists.
-    use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.0',
-        -- or                            , branch = '0.1.x',
-        requires = { {'nvim-lua/plenary.nvim'} }
-    }
+			-- Autocompletion
+			{ "hrsh7th/nvim-cmp" },
+			{ "hrsh7th/cmp-buffer" },
+			{ "hrsh7th/cmp-path" },
+			{ "saadparwaiz1/cmp_luasnip" },
+			{ "hrsh7th/cmp-nvim-lsp" },
+			{ "hrsh7th/cmp-nvim-lua" },
 
-    -- The purpose of this plugin is to bundle all the "boilerplate code" necessary to have nvim-cmp (a popular autocompletion plugin) and nvim-lspconfig working together.
-    use {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v1.x',
-        requires = {
-            -- LSP Support
-            {'neovim/nvim-lspconfig'},
-            {'williamboman/mason.nvim'},
-            {'williamboman/mason-lspconfig.nvim'},
+			-- Snippets
+			{ "L3MON4D3/LuaSnip" },
+			{ "rafamadriz/friendly-snippets" },
+		},
+	})
 
-            -- Autocompletion
-            {'hrsh7th/nvim-cmp'},
-            {'hrsh7th/cmp-buffer'},
-            {'hrsh7th/cmp-path'},
-            {'saadparwaiz1/cmp_luasnip'},
-            {'hrsh7th/cmp-nvim-lsp'},
-            {'hrsh7th/cmp-nvim-lua'},
+	use({ "jose-elias-alvarez/null-ls.nvim", requires = { "nvim-lua/plenary.nvim" } })
 
-            -- Snippets
-            {'L3MON4D3/LuaSnip'},
-            {'rafamadriz/friendly-snippets'},
-        }
-    }
+	-- The goal of nvim-treesitter is both to provide a simple and easy way to use the interface for tree-sitter in Neovim and to provide some basic functionality such as highlighting based on it
+	use({
+		"nvim-treesitter/nvim-treesitter",
+		run = ":TSUpdate",
+	})
 
-    use { "jose-elias-alvarez/null-ls.nvim",
-        requires = { "nvim-lua/plenary.nvim" },
-    }
+	-- Undotree visualizes the undo history and makes it easy to browse and switch between different undo branches.
+	use("mbbill/undotree")
 
+	-- Fugitive is the premier Vim plugin for Git.
+	use("tpope/vim-fugitive")
 
-    -- The goal of nvim-treesitter is both to provide a simple and easy way to use the interface for tree-sitter in Neovim and to provide some basic functionality such as highlighting based on it
-    use{
-        "nvim-treesitter/nvim-treesitter", 
-        run = ":TSUpdate"
-    }
+	-- Distraction-free coding for Neovim
+	use("folke/zen-mode.nvim")
 
-    -- Undotree visualizes the undo history and makes it easy to browse and switch between different undo branches.
-    use("mbbill/undotree")
-
-    -- Fugitive is the premier Vim plugin for Git.
-    use("tpope/vim-fugitive")
-
-    -- Distraction-free coding for Neovim
-    use("folke/zen-mode.nvim")
-
-    -- Automatically set up your configuration after cloning packer.nvim
-    -- Put this at the end after all plugins
-    if packer_bootstrap then
-        require('packer').sync()
-    end
+	-- Automatically set up your configuration after cloning packer.nvim
+	-- Put this at the end after all plugins
+	if packer_bootstrap then
+		require("packer").sync()
+	end
 end)
