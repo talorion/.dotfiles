@@ -70,7 +70,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(fd fzf git poetry python rust systemd tmux direnv)
+plugins=(fzf git poetry python pre-commit rust systemd tmux direnv)
 
 
 # init starship
@@ -143,9 +143,74 @@ export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
-# Restart your shell for the changes to take effect.
-
 # Load pyenv-virtualenv automatically by adding
 # the following to ~/.bashrc:
-
 eval "$(pyenv virtualenv-init -)"
+
+# pnpm
+export PNPM_HOME="/home/gma/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+function generate_line {
+    # Set of characters you want to randomly choose from
+    # characters="⡀⡁⡂⡃⡄⡅⡆⡇⡈⡉⡊⡋⡌⡍⡎⡏⡐⡑⡒⡓⡔⡕⡖⡗⡘⡙⡚⡛⡜⡝⡞⡟⡠⡡⡢⡣⡤⡥⡦⡧⡨⡩⡪⡫⡬⡭⡮⡯⡰⡱⡲⡳⡴⡵⡶⡷⡸⡹⡺⡻⡼⡽⡾⡿⢀⢁⢂⢃⢄⢅⢆⢇⢈⢉⢊⢋⢌⢍⢎⢏⢐⢑⢒⢓⢔⢕⢖⢗⢘⢙⢚⢛⢜⢝⢞⢟⢠⢡⢢⢣⢤⢥⢦⢧⢨⢩⢪⢫⢬⢭⢮⢯⢰⢱⢲⢳⢴⢵⢶⢷⢸⢹⢺⢻⢼⢽⢾⢿⣀⣁⣂⣃⣄⣅⣆⣇⣈⣉⣊⣋⣌⣍⣎⣏⣐⣑⣒⣓⣔⣕⣖⣗⣘⣙⣚⣛⣜⣝⣞⣟⣠⣡⣢⣣⣤⣥⣦⣧⣨⣩⣪⣫⣬⣭⣮⣯⣰⣱⣲⣳⣴⣵⣶⣷⣸⣹⣺⣻⣼⣽⣾⣿"
+    local characters="⡀⡁⡂⡈⡊⡐⡑⡠⡡⡢⡨⡪⢀⢁⢂⢄⢅⢈⢊⢌⢐⢑⢔⢕"
+
+    local length=${1:-80}
+
+    line=""
+    for ((i = 0; i < length; i++)); do
+        random_choice=$((RANDOM % 10)) # this number controls how dense the pattern is
+
+        if [ $random_choice -eq 0 ]; then
+            random_index=$((RANDOM % ${#characters}))  # Pick from the characters string
+            line+="${characters:$random_index:1}"
+        else
+            line+=" "  
+        fi
+    done
+    echo "$line"
+}
+
+# print a random sky pattern
+# TODO: reading the ascii version of the yale bright star catalog 
+#       extracting the J2000 coordinates and plotting them
+function random_sky {
+    # Default values for length and width
+    local length=${1:-80}
+    local width=${2:-10}
+
+    for ((j = 0; j < width; j++)); do
+        generate_line "$length"  # Generate and print each line
+    done
+}
+
+function countdown {
+    start="$(( $(date '+%s') + $1))"
+    iteration=0  # Initialize iteration counter
+    line_count=$(tput lines)
+    column_count=$(tput cols)
+    while [ $start -ge $(date +%s) ]; do
+
+        # Call random_sky every 5th iteration
+        if (( iteration % 30 == 0 )); then
+            clear
+            random_sky $column_count $((line_count - 1))  # Call the random_sky function
+        fi
+        iteration=$((iteration + 1))  # Increment iteration counter
+
+        time="$(( $start - $(date +%s) ))"
+        # tput cuu1  # Move cursor up 1 line
+        tput el    # Clear the line
+        printf "                            $(date -u -d "@$time" +%H:%M:%S)  \r"
+
+        sleep 1
+    done
+    clear
+}
+
+

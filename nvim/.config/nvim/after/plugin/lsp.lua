@@ -4,6 +4,7 @@ lsp.preset("recommended")
 
 lsp.ensure_installed({
 	"rust_analyzer",
+	"ruff",
 	"pyright",
 })
 
@@ -18,15 +19,15 @@ lsp.configure("lua-language-server", {
 	},
 })
 
-lsp.configure("pyright", {
-	settings = {
-		python = {
-			analysis = {
-				useLibraryCodeForTypes = true,
-			},
-		},
-	},
-})
+-- lsp.configure("ruff", {
+-- 	settings = {
+-- 		python = {},
+-- 	},
+-- })
+
+require("lspconfig").ruff.setup({})
+
+require("lspconfig").pyright.setup({})
 
 lsp.setup_nvim_cmp({
 	formatting = {
@@ -95,6 +96,11 @@ lsp.on_attach(function(client, bufnr)
 	vim.keymap.set("i", "<C-h>", function()
 		vim.lsp.buf.signature_help()
 	end, opts)
+	-- make sure you use clients with formatting capabilities
+	-- otherwise you'll get a warning message
+	if client.supports_method("textDocument/formatting") then
+		require("lsp-format").on_attach(client)
+	end
 end)
 
 lsp.format_on_save({
@@ -105,9 +111,10 @@ lsp.format_on_save({
 	servers = {
 		["lua_ls"] = { "lua" },
 		["rust_analyzer"] = { "rust" },
+		["ruff"] = { "python" },
 		-- if you have a working setup with null-ls
 		-- you can specify filetypes it can format.
-		["null-ls"] = { "python" },
+		-- ["null-ls"] = { "python" },
 	},
 })
 
