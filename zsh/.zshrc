@@ -1,8 +1,10 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
+export PATH=/opt/nvim-linux-x86_64/bin/:$HOME/.local/share/vcpkg:$HOME/.local/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME//.oh-my-zsh"
+
+export EDITOR=nvim
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -106,8 +108,6 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # source ~/.zsh_profile
 alias python='python3'
-
-export PATH="$HOME/.poetry/bin:$PATH"
 
 eval "$(direnv hook zsh)"
 
@@ -213,4 +213,6 @@ function countdown {
     clear
 }
 
-
+export GLAB_CONFIG_DIR="/home/gma/.config/glab-cli/"
+eval "$(/home/gma/.local/bin/mise activate zsh)"
+export MISE_TRUSTED_CONFIG_PATHS="$HOME/dev"
