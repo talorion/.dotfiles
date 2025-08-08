@@ -39,4 +39,4 @@ vim.g.netrw_winsize = 25
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 
-vim.g.python3_host_prog = "/home/gma/setup_serles_dev/py3nvim/bin/python3"
+vim.g.python3_host_prog = "/home/gma/setup_serles_dev/venv/bin/python3"
