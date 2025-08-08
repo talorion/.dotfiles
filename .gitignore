@@ -33,5 +33,12 @@ bin/.local/bin/virtualenv-auto-activate.sh
 bin/.local/bin/vulture
 bin/.local/bin/yapf
 bin/.local/bin/yapf-diff
+bin/.local/bin/kitten
+bin/.local/bin/kitty
+bin/.local/bin/mise
+bin/.local/bin/python3.12
+bin/.local/bin/uv
+bin/.local/bin/uvx
+
 
 nvim/.config/nvim/plugin/packer_compiled.lua
