@@ -40,3 +40,4 @@ vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 
 vim.g.python3_host_prog = "/home/gma/setup_serles_dev/venv/bin/python3"
+
